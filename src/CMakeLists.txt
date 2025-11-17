@@ -350,38 +350,6 @@ target_include_directories(oatpp PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 )
 
-#######################################################################################################
-## oatpp-test
-
-if(OATPP_LINK_TEST_LIBRARY)
-
-	add_library(oatpp-test
-			oatpp-test/Checker.cpp
-			oatpp-test/Checker.hpp
-			oatpp-test/UnitTest.cpp
-			oatpp-test/UnitTest.hpp
-			oatpp-test/web/ClientServerTestRunner.hpp
-	)
-	set_target_source_groups(oatpp-test STRIP_PREFIX oatpp-test)
-
-	set_target_properties(oatpp-test PROPERTIES
-			CXX_STANDARD 11
-			CXX_EXTENSIONS OFF
-			CXX_STANDARD_REQUIRED ON
-	)
-	if (MSVC)
-		target_compile_options(oatpp-test PRIVATE /permissive-)
-	endif()
-
-	target_link_libraries(oatpp-test PUBLIC oatpp)
-
-	target_include_directories(oatpp-test PUBLIC
-			$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-	)
-
-	add_dependencies(oatpp-test oatpp)
-
-endif()
 
 #######################################################################################################
 ## Install targets
